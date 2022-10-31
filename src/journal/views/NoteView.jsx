@@ -5,6 +5,7 @@ import { ImageGalery } from "../components";
 export const NoteView = () => {
   return (
     <Grid
+      className="animate__animated animate__fadeIn animate_faster"
       container
       direction="row"
       justifyContent="space-between"
@@ -30,7 +31,7 @@ export const NoteView = () => {
           fullWidth
           placeholder="Ingrese un titulo"
           label="Titulo"
-          sx={{ border: "none", mb:1 }}
+          sx={{ border: "none", mb: 1 }}
         />
         <TextField
           type="text"
@@ -42,8 +43,7 @@ export const NoteView = () => {
         />
       </Grid>
       {/* Galeria de imagenes */}
-      <ImageGalery/>
-
+      <ImageGalery />
     </Grid>
   );
 };
