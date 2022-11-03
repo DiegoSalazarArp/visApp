@@ -1,12 +1,20 @@
 import { Google } from "@mui/icons-material";
-import { Button, Grid, TextField, Typography, Link, Alert } from "@mui/material";
+import {
+  Button,
+  Grid,
+  TextField,
+  Typography,
+  Link,
+  Alert,
+  Divider,
+} from "@mui/material";
 import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 import {
-  checkingAuthentication,
   startGoogleSignIn,
+  startLoginMok,
   startLoginWithEmailPassword,
 } from "../../store/auth/thunks";
 import { AuthLayout } from "../layout/AuthLayout";
@@ -17,16 +25,17 @@ export const LoginPage = () => {
   const dispatch = useDispatch();
 
   const { email, password, onInputChange, formState } = useForm({
-    email: "diego.salazar@gmail.com",
-    password: "123456",
+    email: "dsalazar",
+    password: "dsalazar",
   });
 
   const isAuthenticated = useMemo(() => status == "checking", [status]);
 
   const onSubmit = (event) => {
     event.preventDefault();
+    // dispatch(startLoginWithEmailPassword({email, password}));
 
-    dispatch(startLoginWithEmailPassword({email, password}));
+    dispatch(startLoginMok({ email, password }));
   };
 
   const onGoogleSignIn = (event) => {
@@ -34,9 +43,13 @@ export const LoginPage = () => {
     dispatch(startGoogleSignIn());
   };
   return (
-    <AuthLayout title="Login">
-      <form     className="animate__animated animate__fadeIn animate_faster">
+    <AuthLayout title="MPRO Visaciones">
+      <form className="animate__animated animate__fadeIn animate_faster">
         <Grid container>
+          <Typography variant="p" color="gray">
+            Ingrese sus credenciales:
+          </Typography>
+
           <Grid item xs={12} sx={{ mt: 2 }}>
             <TextField
               label="Usuario"
@@ -60,10 +73,13 @@ export const LoginPage = () => {
             />
           </Grid>
           <Grid container>
-          <Grid item xs={12} display={!!errorMessage ? '': 'none'} >
-                <Alert severity="error">
-                  {errorMessage}
-                </Alert>
+            <Grid
+              item
+              xs={12}
+              display={!!errorMessage ? "" : "none"}
+              sx={{ mt: 1 }}
+            >
+              <Alert severity="error">{errorMessage}</Alert>
             </Grid>
           </Grid>
 

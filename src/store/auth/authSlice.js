@@ -8,7 +8,8 @@ export const authSlice = createSlice({
         email: null,
         displayName: null,
         photoURL: null,
-        errorMessage: null
+        errorMessage: null,
+        listProfile: null
     },
     reducers: {
         login: (state, {payload} ) => {
@@ -30,10 +31,16 @@ export const authSlice = createSlice({
         checkingCredentials: (state) =>{
             state.status = 'checking'
 
+        },
+        pending: (state, {payload}) => {
+            state.status = 'pending',
+            state.uid = payload.uid,
+            state.listProfile = payload.listProfile;
         }
+        
     }
 });
 
 
 // Action creators are generated for each case reducer function
-export const { login, logout, checkingCredentials } = authSlice.actions;
+export const { login, logout, checkingCredentials, pending } = authSlice.actions;
