@@ -13,25 +13,24 @@ export const useFetch = (url, body) => {
       isLoading: false,
     });
     const resp = await fetch(url, {
-        body: body,
-        method:'POST'
+      body: JSON.stringify(body),
+      method: "POST",
     });
     const data = await resp.json();
 
     setState({
-        data,
-        isLoading: false,
-        hasError
+      data,
+      isLoading: false,
+      hasError,
     });
 
     useEffect(() => {
       getFetch();
-    }, [url])
-    
+    }, [url]);
   };
   return {
-    data:state.data,
-    isLoading:state.isLoading,
-    hasError: state.hasError
+    data: state.data,
+    isLoading: state.isLoading,
+    hasError: state.hasError,
   };
 };

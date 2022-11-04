@@ -194,3 +194,30 @@ export const userInfo = async (jwt) => {
     };
   }
 };
+
+export const getMenus = async (jwt) => {
+  try {
+    const requestOption = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + jwt,
+      },
+    };
+
+    const resp = await fetch(
+      "http://apisesionesdesa.grupomok.com/api/getMenu",
+      requestOption
+    ).then((data) => data.json());
+
+    return {
+      ok: true,
+      displayName: resp.data.Usunombre,
+      email: resp.data.UsuMail,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      errorMessage: error.Message,
+    };
+  }
+};

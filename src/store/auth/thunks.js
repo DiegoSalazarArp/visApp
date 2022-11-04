@@ -11,7 +11,7 @@ import {
 import { checkingCredentials, login, logout, pending } from "./authSlice";
 
 export const checkingAuthentication = (email, password) => {
-  return async (dispatch) => {
+  return async (dispatch) => { 
     dispatch(checkingCredentials());
   };
 };
@@ -49,7 +49,6 @@ export const startLoginWithEmailPassword = ({ email, password }) => {
     dispatch(checkingCredentials());
 
     const result = await loginWithEmailPassword({ email, password });
-    // console.log(result)
     if (!result.ok) return dispatch(logout(result));
 
     dispatch(login(result));
@@ -64,6 +63,8 @@ export const startLogout = () => {
   };
 };
 
+
+
 export const startLoginMok = ({ email, password }) => {
   return async (dispatch) => {
     dispatch(checkingCredentials());
@@ -76,9 +77,8 @@ export const startLoginMok = ({ email, password }) => {
     const sessions = await loginMokSessions(data);
     if (!sessions.ok) return dispatch(logout(sessions));
 
-    // send token to localstorage and remove OR set in the state uid tkn
-
-    if (sessions.data.length !== 1) {
+    // Si la cantidad de sesiones = 1, entonces ingresa al login automaticamente, sino, el state = 'pending'
+    if (sessions.data.length == 1) {
       const idSession = sessions.data[0].IdSesion;
 
       const jwt = await generateJWT(idSession, result.uid);
@@ -89,14 +89,13 @@ export const startLoginMok = ({ email, password }) => {
       localStorage.setItem("usr", JSON.stringify(userInfoMok));
       dispatch(login(userInfoMok));
     } else {
-      dispatch(pending({uid: data, listProfile: sessions.data}));
+      dispatch(pending({ uid: data, listProfile: sessions.data }));
     }
   };
 };
 
 export const startSelectedProfile = (idSession, tkn) => {
   return async (dispatch) => {
-
     const jwt = await generateJWT(idSession, tkn);
     if (!jwt.ok) return dispatch(logout(jwt));
 

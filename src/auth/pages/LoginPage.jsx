@@ -6,7 +6,6 @@ import {
   Typography,
   Link,
   Alert,
-  Divider,
 } from "@mui/material";
 import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,7 +23,7 @@ export const LoginPage = () => {
 
   const dispatch = useDispatch();
 
-  const { email, password, onInputChange, formState } = useForm({
+  const { email, password, onInputChange } = useForm({
     email: "dsalazar",
     password: "dsalazar",
   });
@@ -43,7 +42,7 @@ export const LoginPage = () => {
     dispatch(startGoogleSignIn());
   };
   return (
-    <AuthLayout title="MPRO Visaciones">
+    <AuthLayout title="Visaciones">
       <form className="animate__animated animate__fadeIn animate_faster">
         <Grid container>
           <Typography variant="p" color="gray">
@@ -84,7 +83,7 @@ export const LoginPage = () => {
           </Grid>
 
           <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={12}>
               <Button
                 disabled={isAuthenticated}
                 type="submit"
@@ -95,24 +94,24 @@ export const LoginPage = () => {
                 Ingresar
               </Button>
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <Button
-                disabled={isAuthenticated}
-                type="submit"
-                variant="contained"
-                fullWidth
-                onClick={onGoogleSignIn}
-              >
-                <Google />
-                <Typography sx={{ ml: 1 }}>Google</Typography>
-              </Button>
-            </Grid>
+              {/* <Grid item xs={12} sm={6}>
+                <Button
+                  disabled={isAuthenticated}
+                  type="submit"
+                  variant="contained"
+                  fullWidth
+                  onClick={onGoogleSignIn}
+                >
+                  <Google />
+                  <Typography sx={{ ml: 1 }}>Google</Typography>
+                </Button>
+              </Grid> */}
           </Grid>
-          <Grid container direction="row" justifyContent="end">
+          {/* <Grid container direction="row" justifyContent="end">
             <Link color="inherit" to="/auth/register" component={RouterLink}>
               Crear una cuenta
             </Link>
-          </Grid>
+          </Grid> */}
         </Grid>
       </form>
     </AuthLayout>

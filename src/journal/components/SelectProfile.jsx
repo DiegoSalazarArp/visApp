@@ -1,14 +1,12 @@
 import { Button, Divider, Grid } from "@mui/material";
 
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { AuthLayout } from "../../auth/layout/AuthLayout";
 import { logout } from "../../store/auth/authSlice";
 import { startSelectedProfile } from "../../store/auth/thunks";
 
 export const SelectProfile = () => {
   const { uid, listProfile } = useSelector((state) => state.auth);
-  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -31,7 +29,7 @@ export const SelectProfile = () => {
                 sx={{ mb: 2 }}
                 fullWidth
                 variant="contained"
-                key={item}
+                key={item.IdSesion}
                 onClick={() => {
                   selectProfileUser(item.IdSesion);
                 }}

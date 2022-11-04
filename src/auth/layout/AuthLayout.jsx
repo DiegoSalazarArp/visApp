@@ -1,6 +1,6 @@
 import { Grid, Typography } from "@mui/material";
 
-export const AuthLayout = ({ children, title = '' }) => {
+export const AuthLayout = ({ children, title = "" }) => {
   return (
     <Grid
       container
@@ -8,18 +8,26 @@ export const AuthLayout = ({ children, title = '' }) => {
       direction="column"
       alignItems="center"
       justifyContent="center"
-      sx={{ minHeight: "100vh", backgroundColor: "primary.main", padding: 4, backgroundImage: `url(https://wallpapercave.com/uwp/uwp1271503.jpeg)` }}
+      sx={{
+        minHeight: "100vh",
+        backgroundColor: "primary.main",
+        padding: 4,
+        // backgroundImage: `url(https://wallpapercave.com/uwp/uwp1271503.jpeg)`,
+      }}
     >
       <Grid
         item
         className="box-shadow"
         xs={3}
-        sx={{ 
-            width:{md:450},
-            backgroundColor: "white", padding: 3, borderRadius: 2 }}
+        sx={{
+          width: { md: 450 },
+          backgroundColor: "white",
+          padding: 3,
+          borderRadius: 2,
+        }}
       >
         <Typography variant="h5" sx={{ mb: 1 }}>
-        {title}
+          <strong>MPRO</strong> {title}
         </Typography>
 
         {children}
