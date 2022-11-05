@@ -18,7 +18,7 @@ import { useSelector } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
 
 export const Sidebar = ({ drawerWidth = 240 }) => {
-  const { displayName, email } = useSelector((state) => state.auth);
+  const { displayName, email, listMenu } = useSelector((state) => state.auth);
   return (
     <Box
       component="nav"
@@ -44,7 +44,7 @@ export const Sidebar = ({ drawerWidth = 240 }) => {
                 {displayName}
               </Typography>
 
-              <IconButton color="default" >
+              <IconButton color="default">
                 <Home />
               </IconButton>
             </Grid>
@@ -52,8 +52,28 @@ export const Sidebar = ({ drawerWidth = 240 }) => {
         </Toolbar>
         <Divider />
         <List>
+          {/* {
+              listMenu.map((item) => (
+                <Link key={item.MenuCod}
+                color="inherit"
+                to="/ingresoVisacion"
+                component={RouterLink}
+                style={{ textDecoration: "none" }}
+              >
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <Add />
+                    </ListItemIcon>
+                    <Grid container>
+                      <ListItemText primary="Ingreso Visación" />
+                    </Grid>
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+              ))
+          } */}
           <Link
-
             color="inherit"
             to="/ingresoVisacion"
             component={RouterLink}

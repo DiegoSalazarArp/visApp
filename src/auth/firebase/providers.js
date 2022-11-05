@@ -104,6 +104,7 @@ export const loginMok = async ({ email, password }) => {
       requestOptions
     ).then((data) => data.json());
 
+
     return {
       ok: true,
       uid: resp.data,
@@ -159,6 +160,8 @@ export const generateJWT = async (idSession, tkn) => {
       ok: true,
       token: resp.data,
       errorMessage: resp.mensaje,
+
+      
     };
   } catch (error) {
     return {
@@ -209,11 +212,15 @@ export const getMenus = async (jwt) => {
       requestOption
     ).then((data) => data.json());
 
+
     return {
       ok: true,
-      displayName: resp.data.Usunombre,
-      email: resp.data.UsuMail,
+      data: resp.data,
     };
+
+    // SitioNombre
+      // MenuNombre
+      // MenuDescripcion
   } catch (error) {
     return {
       ok: false,
@@ -221,3 +228,4 @@ export const getMenus = async (jwt) => {
     };
   }
 };
+

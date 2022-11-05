@@ -20,7 +20,8 @@ export const authSlice = createSlice({
             state.displayName = payload.displayName;
             state.photoURL = payload.photoURL;
             state.errorMessage = null;
-            
+            state.listMenu = payload.listMenu;
+
         },
         logout: (state, {payload}) => {
             state.status = 'not-authenticatedd', // not-authenticated = authenticate;
@@ -38,6 +39,8 @@ export const authSlice = createSlice({
             state.status = 'pending',
             state.uid = payload.uid,
             state.listProfile = payload.listProfile;
+            state.listMenu = payload.listMenu;
+
         }
         
     }
@@ -45,4 +48,4 @@ export const authSlice = createSlice({
 
 
 // Action creators are generated for each case reducer function
-export const { login, logout, checkingCredentials, pending } = authSlice.actions;
+export const { login, logout, checkingCredentials, pending, loadProfiles } = authSlice.actions;

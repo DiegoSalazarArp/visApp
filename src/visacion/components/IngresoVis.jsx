@@ -34,10 +34,10 @@ export const IngresoVis = () => {
   const test = async () => {
     
     const base64 = await convertBase64(acceptedFiles[0]);
-    console.log(base64);
+    // console.log(base64);
   };
 
-  console.log(acceptedFiles[0])
+  // console.log(acceptedFiles[0])
 
   const valueDate = formatValue();
 

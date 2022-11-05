@@ -12,9 +12,9 @@ export const useCheckUser = () => {
       const infoUser = JSON.parse(localStorage.getItem("usr"));
       if (infoUser == null) return dispatch(logout());
 
-      const { displayName } = infoUser;
+      const { displayName, email, listMenu } = infoUser;
 
-      dispatch(login({ displayName }));
+      dispatch(login({ displayName, email, listMenu }));
     };
     validateInfoUser();
   }, []);

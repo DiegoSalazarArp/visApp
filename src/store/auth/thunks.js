@@ -7,11 +7,18 @@ import {
   loginMokSessions,
   userInfo,
   generateJWT,
+  getMenus,
 } from "../../auth/firebase/providers";
-import { checkingCredentials, login, logout, pending } from "./authSlice";
+import {
+  checkingCredentials,
+  login,
+  logout,
+  pending,
+  loadProfiles,
+} from "./authSlice";
 
 export const checkingAuthentication = (email, password) => {
-  return async (dispatch) => { 
+  return async (dispatch) => {
     dispatch(checkingCredentials());
   };
 };
@@ -63,8 +70,6 @@ export const startLogout = () => {
   };
 };
 
-
-
 export const startLoginMok = ({ email, password }) => {
   return async (dispatch) => {
     dispatch(checkingCredentials());
@@ -75,6 +80,7 @@ export const startLoginMok = ({ email, password }) => {
     const data = result.uid;
 
     const sessions = await loginMokSessions(data);
+
     if (!sessions.ok) return dispatch(logout(sessions));
 
     // Si la cantidad de sesiones = 1, entonces ingresa al login automaticamente, sino, el state = 'pending'
@@ -85,7 +91,14 @@ export const startLoginMok = ({ email, password }) => {
       if (!jwt.ok) return dispatch(logout(jwt));
 
       const userInfoMok = await userInfo(jwt.token);
+      if (!userInfoMok.ok) return dispatch(logout(userInfoMok));
 
+      const menu = await getMenus(jwt.token);
+
+      Object.assign(userInfoMok, {
+        listMenu: menu.data,
+        listProfile: sessions.data,
+      });
       localStorage.setItem("usr", JSON.stringify(userInfoMok));
       dispatch(login(userInfoMok));
     } else {
@@ -100,6 +113,12 @@ export const startSelectedProfile = (idSession, tkn) => {
     if (!jwt.ok) return dispatch(logout(jwt));
 
     const userInfoMok = await userInfo(jwt.token);
+    const menu = await getMenus(jwt.token);
+
+    Object.assign(userInfoMok, {
+      listMenu: menu.data,
+    });
+
     localStorage.setItem("usr", JSON.stringify(userInfoMok));
     dispatch(login(userInfoMok));
   };
