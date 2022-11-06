@@ -10,6 +10,7 @@ const formData = {
   email: "",
   password: "",
   displayName: "",
+
 };
 
 const formValidations = {
@@ -108,6 +109,7 @@ export const RegisterPage = () => {
             <Link color="inherit" to="/auth/login" component={RouterLink}>
               Ingresar
             </Link>
+            
           </Grid>
         </Grid>
       </form>

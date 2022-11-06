@@ -5,7 +5,10 @@ import {
   signInWithPopup,
   updateProfile,
 } from "firebase/auth";
+import { baseData } from "../../enviroment/env";
 import { FirebaseAuth } from "./config";
+
+
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -100,7 +103,7 @@ export const loginMok = async ({ email, password }) => {
       body: JSON.stringify(body),
     };
     const resp = await fetch(
-      `http://apisesionesdesa.grupomok.com/api/getLogin`,
+      `${baseData.apiURLSession}/getLogin`,
       requestOptions
     ).then((data) => data.json());
 
@@ -122,7 +125,7 @@ export const loginMok = async ({ email, password }) => {
 export const loginMokSessions = async (tkn) => {
   try {
     const resp = await fetch(
-      `http://apisesionesdesa.grupomok.com/api/getSesiones?tkn=${tkn}`
+      `${baseData.apiURLSession}/getSesiones?tkn=${tkn}`
     ).then((data) => data.json());
 
     return {
@@ -152,7 +155,7 @@ export const generateJWT = async (idSession, tkn) => {
     };
 
     const resp = await fetch(
-      "http://apisesionesdesa.grupomok.com/api/generateJWT",
+      `${baseData.apiURLSession}/generateJWT`,
       requestOptions
     ).then((data) => data.json());
 
@@ -181,7 +184,7 @@ export const userInfo = async (jwt) => {
     };
 
     const resp = await fetch(
-      "http://apisesionesdesa.grupomok.com/api/getInfoUser",
+      `${baseData.apiURLSession}getInfoUser`,
       requestOption
     ).then((data) => data.json());
 
@@ -208,7 +211,7 @@ export const getMenus = async (jwt) => {
     };
 
     const resp = await fetch(
-      "http://apisesionesdesa.grupomok.com/api/getMenu",
+      `${baseData.apiURLSession}getMenu`,
       requestOption
     ).then((data) => data.json());
 

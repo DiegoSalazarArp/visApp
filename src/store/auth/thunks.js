@@ -14,7 +14,6 @@ import {
   login,
   logout,
   pending,
-  loadProfiles,
 } from "./authSlice";
 
 export const checkingAuthentication = (email, password) => {
@@ -64,7 +63,7 @@ export const startLoginWithEmailPassword = ({ email, password }) => {
 
 export const startLogout = () => {
   return async (dispatch) => {
-    await logoutFirebase();
+    // await logoutFirebase();
 
     dispatch(logout({}));
   };

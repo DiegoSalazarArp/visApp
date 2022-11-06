@@ -1,4 +1,4 @@
-import { TurnedInNot, Add, Home } from "@mui/icons-material";
+import { TurnedInNot, Add, Home, ManageSearch, ForkRight, Article } from "@mui/icons-material";
 import {
   Divider,
   Drawer,
@@ -90,8 +90,59 @@ export const Sidebar = ({ drawerWidth = 240 }) => {
               </ListItemButton>
             </ListItem>
           </Link>
+          <Link
+            color="inherit"
+            to="/seguimientoVisacion"
+            component={RouterLink}
+            style={{ textDecoration: "none" }}
+          >
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <ManageSearch />
+                </ListItemIcon>
+                <Grid container>
+                  <ListItemText primary="Seguimiento Visación" />
+                </Grid>
+              </ListItemButton>
+            </ListItem>
+          </Link>
+          <Link
+            color="inherit"
+            to="/objetadasVisacion"
+            component={RouterLink}
+            style={{ textDecoration: "none" }}
+          >
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <ForkRight />
+                </ListItemIcon>
+                <Grid container>
+                  <ListItemText primary="Visación Objetadas" />
+                </Grid>
+              </ListItemButton>
+            </ListItem>
+          </Link>
+          <Link
+            color="inherit"
+            to="/reporteVisacion"
+            component={RouterLink}
+            style={{ textDecoration: "none" }}
+          >
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <Article />
+                </ListItemIcon>
+                <Grid container>
+                  <ListItemText primary="Reportes Visación" />
+                </Grid>
+              </ListItemButton>
+            </ListItem>
+          </Link>
 
-          {["Ingreso Visacion", "Febrero", "Marzo", "Abril"].map((text) => (
+          {/* {["Ingreso Visacion", "Febrero", "Marzo", "Abril"].map((text) => (
             <ListItem key={text} disablePadding>
               <ListItemButton>
                 <ListItemIcon>
@@ -103,7 +154,7 @@ export const Sidebar = ({ drawerWidth = 240 }) => {
                 </Grid>
               </ListItemButton>
             </ListItem>
-          ))}
+          ))} */}
         </List>
       </Drawer>
     </Box>
