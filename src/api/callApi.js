@@ -11,17 +11,17 @@ export const getDatabyRut = async ({ rutAseg }) => {
       TokenPass,
     };
 
-    console.log('body', body)
     const baseURL = `${apiURL}Visaciones/Asegurado`;
-    // const resp = await fetch(baseURL, {
-    //   method: "POST",
-    //   headers: { "Content-type": "application/json;charset=UTF-8" },
-    //   body,
-    // }).then((data) => data.json());
+    
+    const resp = await fetch(baseURL, {
+      method: "POST",
+      headers: { "Content-type": "application/json;charset=UTF-8" },
+      body,
+    }).then((data) => data.json());
 
     return {
       ok: true,
-      data: 123,
+      data: resp,
     };
   } catch (error) {
     return {
